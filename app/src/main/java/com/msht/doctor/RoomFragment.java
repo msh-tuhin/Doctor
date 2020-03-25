@@ -22,7 +22,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.twilio.video.CameraCapturer;
 import com.twilio.video.ConnectOptions;
@@ -105,7 +104,6 @@ public class RoomFragment extends Fragment {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Toast.makeText(getContext(), "Generated Access Token", Toast.LENGTH_SHORT).show();
                 twilio_access_token = response.body().string();
                 Log.i("access_token", twilio_access_token);
                 Log.i("access_token", "fetched successfully");
@@ -127,7 +125,6 @@ public class RoomFragment extends Fragment {
         room = Video.connect(getActivity(), connectOptions, new Room.Listener() {
             @Override
             public void onConnected(@NonNull Room room) {
-                Toast.makeText(getContext(), "Joined room: "+room.getName(), Toast.LENGTH_SHORT).show();
                 Log.i("identity", room.getLocalParticipant().getIdentity());
                 Log.i("room_name", room.getName());
                 for(RemoteParticipant remoteParticipant : room.getRemoteParticipants()){
